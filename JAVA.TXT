@@ -1,0 +1,559 @@
+https://github.com/acenelio/encapsulation1-java
+
+Ferramentas a serem utilizadas (IDE)
+
+Eclipse
+NetBeans
+Spring Tool Suite -> Github
+
+A plataforma Java se caracteriza pela API e pelo ambiente de execução
+
+API (São as bibliotecas)
+
+* JVM - necessário para executar sistemas em JAVA
+* JRE - Java Runtime Environment - para usuários finais executarem aplicações Java no computador. É o JVM para o cliente
+* Server JRE - Para executar sistemas Java em servidores
+* JDK - Java Development Kit - Para desenvolvedores
+
+Java tem a compilação just-in-time
+
+* Uma aplicação é composta por classes
+* Package é um agrupamento lógico de classes relacionadas
+* Módulo é um agrupamento lógico de Packages relacionadas
+* Aplicação é um agrupamento de módulos relacionados
+
+https://www.youtube.com/watch?v=sTX0UEplF54&list=PLHz_AreHm4dkI2ZdjTwZA4mPMxWTfNSpR
+https://www.youtube.com/watch?v=KlIL63MeyMY&list=PLHz_AreHm4dkqe2aR0tQK74m8SFe-aGsY
+
+O bytecode é gerado automaticamente enquanto vai se escrevendo os codigos
+
+Ctrl + Shift + f -> Para fazer indentação do codigo fonte
+
+• Java é uma linguagem estaticamente tipada - Os tipos das variaves sao definidos em tempo de compilação
+
+*****************************************************
+********************** REVISAO **********************
+*****************************************************
+Tipos primitivos em Java
+------------------------
+boolean = true or false = false
+char = unicode - \u0000 = \u0000
+byte = -128 to 127 = 0
+short = -32768 to 32767 = 0
+int = 32 bits = 0
+long = 64 bits = 0L
+float = 32 bits = 0.0f
+double = 64 bits = 0.0d
+string = null
+object
+
+Conversão implícita e casting
+-----------------------------
+double a;
+float b;
+a = 5.0;
+b = (float) a;
+
+double a;
+int b;
+a = 5.0;
+b = (int) a;
+
+int a, b;
+double result;
+a = 5;
+b = 2;
+result = (double) a / b;
+
+Date
+----
+SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+SimpleDateFormat sdf3 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+sdf3.setTimeZone(TimeZone.getTimeZone("GMT"));
+Date x1 = new Date();
+Date x2 = new Date(System.currentTimeMillis());
+Date x3 = new Date(0L);
+Date x4 = new Date(1000L * 60L * 60L * 5L);
+Date y1 = sdf1.parse("25/06/2018");
+Date y2 = sdf2.parse("25/06/2018 15:42:07");
+Date y3 = Date.from(Instant.parse("2018-06-25T15:42:07Z"));
+
+Somando uma unidade de tempo
+----------------------------
+SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+Date d = Date.from(Instant.parse("2018-06-25T15:42:07Z"));
+System.out.println(sdf.format(d));
+Calendar cal = Calendar.getInstance();
+cal.setTime(d);
+cal.add(Calendar.HOUR_OF_DAY, 4);
+d = cal.getTime();
+System.out.println(sdf.format(d));
+
+Obtendo uma unidade de tempo
+----------------------------
+SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+Date d = Date.from(Instant.parse("2018-06-25T15:42:07Z"));
+System.out.println(sdf.format(d));
+Calendar cal = Calendar.getInstance();
+cal.setTime(d);
+int minutes = cal.get(Calendar.MINUTE);
+int month = 1 + cal.get(Calendar.MONTH);
+System.out.println("Minutes: " + minutes);
+System.out.println("Month: " + month);
+
+Operadores aritméticos
+----------------------
+int n1 = 3 + 4 * 2;
+int n2 = (3 + 4) * 2;
+int n3 = 17 % 3;
+double n4 = 10.0 / 8.0;
+double a = 1.0, b = -3.0, c = -4.0;
+double x1 = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
+
+Operadores de atribuição
+------------------------
+Operador Exemplo Significado
+ = a = 10; a RECEBE 10
++= a += 2; a RECEBE a + 2;
+-= a -= 2; a RECEBE a - 2;
+*= a *= 2; a RECEBE a * 2;
+/= a /= 2; a RECEBE a / 2;
+%= a %= 3; a RECEBE a % 3;
+
+Operadores aritméticos / atribuição
+-----------------------------------
+Operador Exemplo Significado
+++ a++; ou ++a; a = a + 1;
+-- a--; ou --a; a = a - 1;
+
+Operadores comparativos
+-----------------------
+Operador Significado
+> maior
+< menor
+>= maior ou igual
+<= menor ou igual
+== igual
+!= diferente
+
+Operadores lógicos
+------------------
+Precedência: ! > && > ||
+Operador Significado
+&& E
+|| OU
+! NÃO
+
+Operadores bitwise
+------------------
+Operador Significado
+& Operação "E" bit a bit
+| Operação "OU" bit a bit
+^ Operação "OU-exclusivo" bit a bit
+
+Operação substring
+------------------
+String s = "abcdefgh";
+String sub1 = s.substring(3);
+String sub2 = s.substring(3, 5);
+• Formatar: toLowerCase(), toUpperCase(), trim()
+• Recortar: substring(inicio), substring(inicio, fim)
+• Substituir: Replace(char, char), Replace(string, string)
+• Buscar: IndexOf, LastIndexOf
+• str.Split(" ")
+String original = "abcde FGHIJ ABC abc DEFG ";
+String s01 = original.toLowerCase();
+String s02 = original.toUpperCase();
+String s03 = original.trim();
+String s04 = original.substring(2);
+String s05 = original.substring(2, 9);
+String s06 = original.replace('a', 'x');
+String s07 = original.replace("abc", "xy");
+int i = original.indexOf("bc");
+int j = original.lastIndexOf("bc");
+
+Operação split
+--------------
+String s = "potato apple lemon";
+String[] vect = s.split(" ");
+String word1 = vect[0];
+String word2 = vect[1];
+String word3 = vect[2];
+
+Estruturas condicionais
+-----------------------
+if-else
+
+Sintaxe alternativa: switch-case
+--------------------------------
+var minhaVariavel = (...);
+switch (minhaVariavel) {
+  case 1:
+    System.out.println("Caso 1");
+    break;
+  case 2:
+    System.out.println("Caso 2");
+    break;
+  default:
+    System.out.println("Caso padrão");
+}
+
+Expressão condicional ternária
+------------------------------
+( condição ) ? valor_se_verdadeiro : valor_se_falso
+double preco = 34.5;
+double desconto = (preco < 20.0) ? preco * 0.1 : preco * 0.05;
+
+Estrutura repetitiva while
+--------------------------
+while ( condição ) {
+comando 1
+comando 2
+}
+
+Estrutura repetitiva for
+------------------------
+for ( início ; condição ; incremento) {
+comando 1
+comando 2
+}
+
+Estrutura repetitiva do-while
+-----------------------------
+do {
+comando 1
+comando 2
+} while ( condição );
+
+Orientação a Objetos
+--------------------
+Classes atributos e metodos (conceitos basicos)
+atributos = dados/campos
+métodos = funções/operações
+
+Instanciação
+------------
+Temos a area de memoria Stack e a Heap
+Quando declaramos as variaveis, elas são criadas na area Stack (onde são criadas as variaveis estaticas)
+Durante a execução do programa podemos fazer uma alocação dinamica de memoria, usando o comando "new", logo é criado (instanciado) um objeto numa outra area de memoria chamada Heap, e na area Stack tem apenas o indereço para a area Heap.
+
+A classe é simplesmente a definição do tipo
+Os triangulos x e y são os objetos ou seja, são instâncias da classe
+
+Membros estáticos
+-----------------
+Não precisa de objeto para serem chamadas. São chamadas a partir do própio nome da classe. Ex.: Math.sqrt(double)
+
+Construtor
+----------
+Vai obrigar o desenvolvedor a inicializar os valores dos atributos de um objeto
+
+Sobrecarga
+----------
+É um recurso que uma classe possui de oferecer mais de uma operação com o mesmo nome, porém com diferentes listas de parâmetros. É vc disponibilizar mais de uma versão da mesma operação. A diferença entre elas é a lista de parametros.
+
+Encapsulamento
+--------------
+O objeto deve sempre estar em um estado consistente, ou seja, os dados devem estar corretos, certinhos, sem valores invalidos. Analogia, um aparelho de som. Ele esconde todos os detalhes do circuito, e ocorre internamente, é escondido para o usuario.
+* Os atributos devem ser privados (private)
+* Devem ser acessados por meio de get e set
+
+Tipo referência
+---------------
+Variaveis do tipo classe são tipo referência, elas tem o endereço na Stack apontando para o objeto instanciado no Heap. Eles aceitam valor null, ou seja aponta pra ninguem.
+
+Tipos primitivos são tipos valor
+--------------------------------
+Em java esses tipos são tipos valores. São caixas e não ponteiros.
+
+Valores padrão
+--------------
+Sempre será atribuido valores padrão aos elementos de classe ou array ao chamar o "new"
+
+Tipos referência vs. Tipos valor(primitivos)
+--------------------------------------------
+usufrui dos recursos de OO / é simples e mais performatico
+as variaveis são ponteiros / as variaveis sao caixas
+Objetos são instanciado (new) ou aponta pra outro objeto / apenas declara e usa
+aceita valor null / Não aceita
+y = x -> aponta para onde esta x / y = x -> recebe copia de x
+obj instanciados no heap / "obj" instanciados no stack
+a limpeza de obj nao utilizados pelo garbage collector / "obj" desaloca na finalização do passo ou execução ou scopo local
+
+Garbage collector
+-----------------
+Ele monitora a memória no heap para limpeza de objeto que não está mais em uso (sem referencia)
+
+Vetores
+-------
+• Revisão do conceito de vetor
+• Declaração e instanciação
+• Manipulação de vetor de elementos tipo valor (tipo primitivo)
+• Manipulação de vetor de elementos tipo referência (classe)
+• Acesso aos elementos
+• Propriedade length
+
+Boxing
+------
+Conversão tipo valor para tipo referencia (obj)
+ex.: int x = 20;
+     Object obj = x;
+
+Unboxing
+--------
+Conversão tipo referencia (obj) para tipo valor
+ex.: int x = 20;
+     Object obj = x;
+     int y = (int) obj;
+
+Wrapper classes
+---------------
+Classes equivalentes aos tipos primitivos, não precisa de casting
+São classes que trata os tipos primitivos como classe mais transparente ao compilador
+O Wrapper classe aceita valor nulo ao contrario dos tipos primitivos
+ex.: int x = 20;
+     Integer obj = x;
+
+For each
+--------
+Sintaxe para percorrer vetor
+String[] vect = new String[] {"A", "B", "C"};
+++++ for normal ++++
+for (int i = 0; i < vect.length; i++) {      
+	System.out.println(vect[i]);               
+}		                                         
+++++ foreach ++++ (Para cada objeto obj contido no vetor vect faça)
+for (String obj : vect) {                    
+	System.out.println(obj);                   
+}                                            
+
+Listas
+------
+É uma estrutura de dados tanto como em vetor, entretanto do mesmo tipo, ordenada, inicia vazia, elementos alocados sob demanda e cada elemento ocupa um "nó" da lista
+No vetor vc ja tem que informar quantos elementos ele tem (desvantagem)
+"Tipo List" não é classe mas sim uma interface, ela não é instanciada
+Vantagem (Tamanho variavel, facilidade para inserir e deletar registros)
+Desvantagem (acesso sequencial)
+Classes que implementa essa interface
+   ArrayList
+   LinkedList
+
+Matrizes
+--------
+int[][] mat = new int[m][n];
+
+git e github
+------------
+git é um sistema de versionamento
+repositorio de versionamento - projeto controlado pelo Git
+copiar um repos. remoto para o computador se chama PULL se ja tiver na minha maq. e eu quero apenas atualizar, se eu quiser copiar tudo se chama CLONE. Apos trabalhar durante o dia eu vou fazer um PUSH para o servidor. COMMIT salva uma nova versao na maq. local
+
+github é um serviço de hospedagem de repos. Git remoto.
+
+https://github.com/tmemelli/aula1-github
+fatal: unable to access 'https://github.com/tmemelli/aula1-github.git/': SSL certificate problem: self signed certificate in certificate chain
+
+Arquivo gitignore
+-----------------
+Serve para dizer o que deve ou não ser versionado. Apenas o que interessa versionar são os codigos fontes.
+
+PASSO A PASSO - Fazer atualização no github
+-------------------------------------------
+git config --global http.sslVerify false
+
+git config --list                (Verificar nome e email estão corretos
+git config --global user.name "Thiago Memelli"
+git config --global user.email "tmemelli@gmail.com"
+git remote add origin https://github.com/tmemelli/exceptions.git - Associar rep. Local com o rep. remoto (github)
+git pull origin master           (Atualiza repos. local em relação ao remoto - Apenas se eu criei o gitignore pelo github
+git status                       (Verifica arquivos
+git add .                        (Adiciona todos arquivos ao stage
+git commit -m "Versao Dia270718" (Salva uma nova versão do projeto
+git push -u origin master        (Envia o repositório local p/o remoto na primeira vez
+git push                         (Nas outras vezes fazer
+git clone https://github.com/tmemelli/projeto.git (Proj. <> computador, trazer
+
+
+Realizar COMMIT: Salva uma nova versao na maq. local
+git add .
+git commit -m "Nome Alteração"
+
+Listar histórico de COMMITs:
+git log --oneline
+
+Realizar PUSH: Salvar projeto atualizado no seu Github
+git push
+
+Realizar PULL: Atualiza repos. local em relação ao remoto
+git pull origin master
+
+Realizar CLONE: Copia repos. remoto para comp. APENAS se NAO existir localmente
+git clone https://github.com/tmemelli/aula1-github.git
+
+Desfazer tudo que eu fiz desde o último COMMIT
+git clean -df
+git checkout -- .
+
+Preciso remover o último commit, porém mantendo os arquivos do jeito que estão
+git reset --soft HEAD~1
+
+Preciso remover o último commit, inclusive as alterações nos arquivos (CUIDADO!)
+git reset --hard HEAD~1
+
+Preciso apagar o último commit no Github
+git push -f origin HEAD^:master
+
+Quero alterar temporariamente os arquivos do projeto de modo a ficarem no estado do commit informado
+git checkout <código do commit>
+EXEMPLO: git checkout e8a52f3
+
+para voltar ao último commit faça:
+git checkout master
+
+Quero mudar o meu repositório remoto "origin"
+git remote set-url origin https://github.com/tmemelli/course.git
+git push -u origin master
+
+Entrei no VIM por engano. Como sair?
+Tecle ESC, depois digite :q! e tecle ENTER
+
+PASSO A PASSO - Trazer do github para comp novo
+-----------------------------------------------
+git config --list              (Verificar nome e email estão corretos
+git config --global user.name "Thiago Memelli"
+git config --global user.email "tmemelli@gmail.com"
+git clone https://github.com/tmemelli/course.git
+ABRIR PROJ NO Eclipse
+File -> Import... -> Existing Projects into Workspace ->
+-> Browser... -> C:\temp\ws-eclipse\course -> Finish
+
+Enumerações
+-----------
+• É um tipo especial que serve para especificar de forma literal um conjunto de constantes relacionadas • Palavra chave em Java: enum • Vantagem: melhor semântica, código mais legível e auxiliado pelo compilador
+
+Composição
+----------
+Tipo de associação que permite que um obj contenha outro
+Cada obj tem uma responsabilidade por uma ação
+composição de obj
+  todo -> parte
+
+Herança
+-------
+Associação que permite que uma classe herde todos dados e comportamentos de outra. Vantagens de reuso e polimorfismo
+Ex.: class A extends B
+• Herança é uma relação "é-um", A conta empresarial tbm é uma conta, +  com algo +
+• Generalização (conta account) / especialização (conta empresarial)
+• Superclasse (classe base - conta account) / subclasse (classe derivada - c. emp)
+• Herança / extensão (A conta empresarial está extendendo a c account)
+• Herança é uma associação entre classes (e não entre objetos)
+
+Upcasting
+---------
+Conversão da subclasse para superclass
+Exemplo Program_Heranca
+
+Downcasting
+-----------
+Converter da superclass para subclasse 
+Exemplo Program_Heranca
+
+Sobreposição ou Sobrescrita
+---------------------------
+É a implementação de um método de uma superclasse na subclasse
+usamos a anotação @Override para identificar esse uso
+Exemplo Program_Heranca // Sobreposicao
+
+Classes e métodos final
+-----------------------
+A palavra final na classe evita que ela seja herdada
+A palavra final no metodo evita que ele seja sobreposto
+Exemplo 
+public final class ContaPoupanca extends Account {
+public class ContaPoupancaPlus extends ContaPoupanca {
+
+ContaPoupanca
+public final void saque(double amount) {
+
+ContaPoupancaPlus
+@Override                               
+public void saque(double amount) {      
+	balance -= amount + 2.0;              
+}                                       
+
+Polimorfismo
+------------
+Em POO, polimorfismo é recurso que permite que variáveis de um mesmo tipo mais genérico possam apontar para objetos de tipos específicos diferentes, tendo assim comportamentos diferentes conforme cada tipo específico.
+
+Account x = new Account(1020, "Alex", 1000.0);
+Account y = new ContaPoupanca(1023, "Maria", 1000.0, 0.01);
+
+Classes abstratas
+-----------------
+Não podem ser instanciadas. Garantimos herança total.
+Exemplo: public abstract class Account {
+
+Metodos abstratos
+-----------------
+São metodos que não possuem implementação, uma vez que ele não tem como ser reusados nas subclasses, por ser generico demais. Exemplo metodo area de uma class shape
+
+
+	                              private default protected	public
+mesma classe	                        sim	sim	sim	sim
+mesmo pacote	                        não	sim	sim	sim
+pacotes diferentes (subclasses)	        não	não	sim	sim
+pacotes diferentes (sem subclasses)	não	não	não	sim
+
+try-catch
+---------
+• Bloco try
+	Contém o código que representa a execução normal do trecho de código que pode acarretar em uma exceção
+• Bloco catch
+	Contém o código a ser executado caso uma exceção ocorra
+	Deve ser especificado o tipo da exceção a ser tratada (upcasting é permitido)
+
+try {
+}
+catch (ExceptionType e) {
+}
+catch (ExceptionType e) {
+}
+catch (ExceptionType e) {
+}
+
+Stack Trace
+-----------
+Para mapear a cadeia de chamadas até o erro (excessão), quando esse ocorrer
+
+
+Bloco finally
+-------------
+• É um bloco que contém código a ser executado independentemente de ter ocorrido ou não uma exceção.
+• Exemplo clássico: fechar um arquivo, conexão de banco de dados, ou outro recurso específico ao final do processamento.
+
+try {
+}
+catch (ExceptionType e) {
+}
+finally {
+}
+
+Leitura de arquivos de texto em Java
+------------------------------------
+• File - Representação abstrata de um arquivo e seu caminho
+• Scanner - Leitor de texto
+• IOException (Exception)
+• FileReader (stream de leitura de caracteres a partir de arquivos)
+• BufferedReader (mais rápido)
+
+A classe BufferedReader é um Reader que recebe outro Reader pelo construtor e concatena os diversos chars para formar uma String através do método readLine. Como o próprio nome diz, essa classe lê do Reader por pedaços (usando o buffer) para evitar realizar muitas chamadas ao sistema operacional.
+
+Bloco try-with-resources
+------------------------
+É um bloco try que declara um ou mais recursos, e garante que esses recursos serão fechados ao final do bloco
+
+Escrita de arquivos de texto em Java
+------------------------------------
+• FileWriter (stream de escrita de caracteres em de arquivos)
+• BufferedWriter (mais rápido)
